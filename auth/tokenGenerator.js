@@ -1,12 +1,12 @@
 module.exports = {
-  generateToken
+  newToken
 };
 
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET;
 
 // generate token
-function generateToken(user) {
+function newToken(user) {
   const payload = {
     subject: user.id,
     username: user.username

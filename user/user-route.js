@@ -18,10 +18,10 @@ const { auth } = require('../auth/auth');
 // incoming /api
 
 // function import
-const generateToken = require('../auth/generateToken');
+const tokenGenerator = require('../auth/tokenGenerator');
 
 // register user, send token and user id
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const newUser = req.body;
 
@@ -34,15 +34,22 @@ router.post('/register', (req, res) => {
       .json({ message: 'Username and password required, please try again.' });
   }
 
-  users
-    .add(newUser)
-    .then(user => {
-      const token = generateToken(user);
-      res
-        .status(200)
-        .json({ message: 'Registration successful', userId: user.id, token });
-    })
-    .catch(err => res.status(500).json({ message: err }));
+  try {
+    const user = await users.add(newUser);
+    if (user) {
+      const token = tokenGenerator.newToken(user);
+      res.status(200).json({
+        message: 'Registration successful',
+        user_id: user.id,
+        role: user.role,
+        token
+      });
+    } else {
+      res.status(500).json({ message: 'Registration failure' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // login user, send token and user id
@@ -60,10 +67,10 @@ router.post('/login', (req, res) => {
     .getBy(username)
     .then(user => {
       if (bcrypt.compareSync(password, user.password)) {
-        const token = generateToken(user);
+        const token = tokenGenerator.newToken(user);
         res
           .status(200)
-          .json({ message: 'Login successful', userId: user.id, token });
+          .json({ message: 'Login successful', user_id: user.id, role, token });
       } else {
         res
           .status(401)
@@ -77,6 +84,7 @@ router.post('/login', (req, res) => {
     );
 });
 
+// apply admin to this endpoint and move to restricted
 // protected route, admin access only
 router.get('/users', auth, (req, res) => {
   users
@@ -84,9 +92,10 @@ router.get('/users', auth, (req, res) => {
     .then(users => {
       res.json({ users });
     })
-    .catch(err => res.json({ message: err }));
+    .catch(err => res.json({ message: 'Internal server error' }));
 });
 
+// apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;
 
@@ -100,7 +109,7 @@ router.delete('/user/:id', async (req, res) => {
         .json({ message: `No user with matching id, please try again.` });
     }
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

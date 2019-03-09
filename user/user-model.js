@@ -20,15 +20,16 @@ function getBy(username) {
 
 function getById(id) {
   return db('user')
-    .where('user.id', id)
+    .where({ id })
     .first();
 }
 
-function add(newUser) {
+async function add(newUser) {
+  const [id] = await db('user').insert(newUser, 'id');
+
   return db('user')
-    .insert(newUser)
-    .then(() => db('user').then(users => users.length + 1))
-    .then(id => getById(id));
+    .where({ id })
+    .first();
 }
 
 function remove(id) {
