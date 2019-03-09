@@ -25,8 +25,10 @@ router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const newUser = req.body;
 
-  const hash = bcrypt.hashSync(newUser.password, 5);
-  newUser.password = hash;
+  if (password) {
+    const hash = bcrypt.hashSync(newUser.password, 5);
+    newUser.password = hash;
+  }
 
   if ((!username, !password)) {
     res
@@ -53,35 +55,37 @@ router.post('/register', async (req, res) => {
 });
 
 // login user, send token and user id
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   if ((!username, !password)) {
-    // no username or password
     res
       .status(400)
       .json({ message: 'Username and password required, please try again.' });
   }
+  try {
+    const user = await users.getBy(username);
 
-  users
-    .getBy(username)
-    .then(user => {
+    if (user) {
       if (bcrypt.compareSync(password, user.password)) {
         const token = tokenGenerator.newToken(user);
         res
           .status(200)
-          .json({ message: 'Login successful', user_id: user.id, role, token });
+          .json({
+            message: 'Login successful',
+            user_id: user.id,
+            role: user.role,
+            token
+          });
       } else {
         res
           .status(401)
           .json({ message: 'Invalid credentials, please try again.' });
       }
-    })
-    .catch(err =>
-      res
-        .status(500)
-        .json({ message: 'Invalid credentials, please try again.' })
-    );
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Invalid credentials, please try again.' });
+  }
 });
 
 // apply admin to this endpoint and move to restricted
@@ -92,7 +96,11 @@ router.get('/users', auth, (req, res) => {
     .then(users => {
       res.json({ users });
     })
-    .catch(err => res.json({ message: 'Internal server error' }));
+    .catch(err =>
+      res
+        .status(500)
+        .json({ message: 'Internal server error or invalid token' })
+    );
 });
 
 // apply admin to this endpoint and move to restricted
