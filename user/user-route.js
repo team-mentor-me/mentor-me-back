@@ -18,7 +18,7 @@ const { auth } = require('../auth/auth');
 // incoming /api
 
 // function import
-const generateToken = require('../auth/generateToken');
+const tokenGenerator = require('../auth/generateToken');
 
 // register user, send token and user id
 router.post('/register', (req, res) => {
@@ -35,12 +35,14 @@ router.post('/register', (req, res) => {
   users
     .add(newUser)
     .then(user => {
-      const token = generateToken(user);
+      const token = tokenGenerator.generateToken(user);
       res
         .status(200)
-        .json({ message: 'Registration successful', userId: user.id, token });
+        .json({ message: 'Registration successful', user_id: user.id, token });
     })
-    .catch(err => res.status(500).json(err));
+    .catch(err =>
+      res.status(500).json({ message: 'Registration failed', err })
+    );
 });
 
 // login user, send token and user id
@@ -59,7 +61,7 @@ router.post('/login', (req, res) => {
         const token = generateToken(user);
         res
           .status(200)
-          .json({ message: 'Login successful', userId: user.id, token });
+          .json({ message: 'Login successful', user_id: user.id, token });
       } else {
         res.status(401).json({ message: 'Invalid credentials' });
       }
