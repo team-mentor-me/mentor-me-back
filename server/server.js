@@ -27,7 +27,7 @@ const userRouter = require('../user/user-route');
 server.use('/api', userRouter);
 
 server.get('/', (req, res) => {
-  res.send("It's alive!");
+  res.json({ message: 'Server is live!' });
 });
 
 module.exports = server;

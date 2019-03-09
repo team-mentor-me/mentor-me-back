@@ -4,7 +4,6 @@ require('dotenv').config();
 // package imports
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 // router extension
 const router = express.Router();
@@ -19,10 +18,10 @@ const { auth } = require('../auth/auth');
 // incoming /api
 
 // function import
-const generateToken = require('../auth/generateToken');
+const tokenGenerator = require('../auth/tokenGenerator');
 
 // register user, send token and user id
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const newUser = req.body;
 
@@ -30,18 +29,27 @@ router.post('/register', (req, res) => {
   newUser.password = hash;
 
   if ((!username, !password)) {
-    res.status(400).json({ message: 'Username and password required.' });
+    res
+      .status(400)
+      .json({ message: 'Username and password required, please try again.' });
   }
 
-  users
-    .add(newUser)
-    .then(user => {
-      const token = generateToken(user);
-      res
-        .status(200)
-        .json({ message: 'Registration successful', userId: user.id, token });
-    })
-    .catch(err => res.status(500).json(err));
+  try {
+    const user = await users.add(newUser);
+    if (user) {
+      const token = tokenGenerator.newToken(user);
+      res.status(200).json({
+        message: 'Registration successful',
+        user_id: user.id,
+        role: user.role,
+        token
+      });
+    } else {
+      res.status(500).json({ message: 'Registration failure' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // login user, send token and user id
@@ -50,24 +58,33 @@ router.post('/login', (req, res) => {
 
   if ((!username, !password)) {
     // no username or password
-    res.status(400).json({ message: 'Username and password required.' });
+    res
+      .status(400)
+      .json({ message: 'Username and password required, please try again.' });
   }
 
   users
     .getBy(username)
     .then(user => {
       if (bcrypt.compareSync(password, user.password)) {
-        const token = generateToken(user);
+        const token = tokenGenerator.newToken(user);
         res
           .status(200)
-          .json({ message: 'Login successful', userId: user.id, token });
+          .json({ message: 'Login successful', user_id: user.id, role, token });
       } else {
-        res.status(401).json({ message: 'Invalid credentials' });
+        res
+          .status(401)
+          .json({ message: 'Invalid credentials, please try again.' });
       }
     })
-    .catch(err => res.status(500).json(err));
+    .catch(err =>
+      res
+        .status(500)
+        .json({ message: 'Invalid credentials, please try again.' })
+    );
 });
 
+// apply admin to this endpoint and move to restricted
 // protected route, admin access only
 router.get('/users', auth, (req, res) => {
   users
@@ -75,8 +92,28 @@ router.get('/users', auth, (req, res) => {
     .then(users => {
       res.json({ users });
     })
-    .catch(err => res.send(err));
+    .catch(err => res.json({ message: 'Internal server error' }));
 });
+
+// apply admin to this endpoint and move to restricted
+router.delete('/user/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const count = await users.remove(id);
+    if (count === 1) {
+      res.status(202).json({ message: `User successfully deleted` });
+    } else {
+      res
+        .status(404)
+        .json({ message: `No user with matching id, please try again.` });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// get user name, about by id
 
 // logout handles on client side, must destroy token
 module.exports = router;
