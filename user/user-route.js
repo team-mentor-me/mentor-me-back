@@ -16,9 +16,6 @@ const users = require('./user-model');
 const { auth } = require('../auth/auth');
 // const { checkRole } = require('../auth/checkRole'); // could use for admin panel if implemented
 
-// from env
-const secret = process.env.SECRET;
-
 // incoming /api
 
 // function import
