@@ -12,54 +12,56 @@ exports.seed = function(knex, Promise) {
           username: faker.internet.userName(),
           role: 'business_owner',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
         },
         {
           id: 2,
           username: faker.internet.userName(),
-          role: 'entrepreneur',
+          role: 'business_owner',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
         },
         {
           id: 3,
           username: faker.internet.userName(),
-          role: 'business_owner',
+          role: 'entrepreneur',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
         },
         {
           id: 4,
           username: faker.internet.userName(),
           role: 'entrepreneur',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
         },
         {
           id: 5,
           username: faker.internet.userName(),
           role: 'entrepreneur',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
         },
         {
           id: 6,
           username: faker.internet.userName(),
           role: 'entrepreneur',
           name: faker.name.findName(),
-          email: faker.internet.email(),
-          about: faker.lorem.sentence(),
-          photo: faker.image.avatar()
+          email: faker.internet.email()
+        },
+        {
+          id: 7,
+          username: faker.internet.userName(),
+          role: 'entrepreneur',
+          name: faker.name.findName(),
+          email: faker.internet.email()
+        },
+        {
+          id: 8,
+          username: faker.internet.userName(),
+          role: 'entrepreneur',
+          name: faker.name.findName(),
+          email: faker.internet.email()
         }
       ]);
     });

@@ -2,18 +2,18 @@ const faker = require('faker');
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('post')
+  return knex('question')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('post').insert([
+      return knex('question').insert([
         {
           id: 1,
           question: 'How does ISO help with low light photography',
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 3
         },
         {
           id: 2,
@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 3
         },
         {
           id: 3,
@@ -30,15 +30,16 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 4
         },
         {
           id: 4,
-          question: 'What are megapixels and ',
+          question:
+            'How do I stand out in a sea of photos that are all edited the same?',
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 5
         },
         {
           id: 5,
@@ -46,39 +47,40 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 6
         },
         {
           id: 7,
-          question: 'How do I keep my api key secret when publishing my work',
+          question: 'How do I keep my api key secret when publishing my work?',
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 6
         },
         {
           id: 8,
-          question: 'What Are Megapixels?',
+          question:
+            'What is the difference between a SQL and a NoSQL database?',
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 7
         },
         {
           id: 9,
-          question: 'What Are Megapixels?',
+          question: 'Where can I learn about React Hooks?',
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 7
         },
         {
           id: 10,
-          question: 'What Are Megapixels?',
+          question: 'When should I implement redux into my project?',
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          fk: 1
+          user_fk: 8
         }
       ]);
     });
