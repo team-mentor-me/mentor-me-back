@@ -6,11 +6,10 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     table.string('category', 255).notNullable();
-    table.string('type').notNullable();
     table.string('photo_path');
     table.string('file_path');
     table
-      .integer('question_fk')
+      .integer('user_fk')
       .unsigned()
       .references('id')
       .inTable('user');
