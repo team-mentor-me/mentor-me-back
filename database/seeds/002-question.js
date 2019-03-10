@@ -13,7 +13,8 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 3
+          user_fk: 3,
+          conversation_fk: 1
         },
         {
           id: 2,
@@ -21,7 +22,8 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 3
+          user_fk: 3,
+          conversation_fk: 2
         },
         {
           id: 3,
@@ -30,7 +32,8 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 4
+          user_fk: 4,
+          conversation_fk: 3
         },
         {
           id: 4,
@@ -39,7 +42,8 @@ exports.seed = function(knex, Promise) {
           category: 'Photography',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 5
+          user_fk: 5,
+          conversation_fk: 4
         },
         {
           id: 5,
@@ -47,7 +51,8 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 6
+          user_fk: 6,
+          conversation_fk: 5
         },
         {
           id: 7,
@@ -55,7 +60,8 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 6
+          user_fk: 6,
+          conversation_fk: 6
         },
         {
           id: 8,
@@ -64,7 +70,8 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 7
+          user_fk: 7,
+          conversation_fk: 7
         },
         {
           id: 9,
@@ -72,7 +79,8 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 7
+          user_fk: 7,
+          conversation_fk: 8
         },
         {
           id: 10,
@@ -80,7 +88,8 @@ exports.seed = function(knex, Promise) {
           category: 'Development',
           photo_path: faker.image.image(),
           file_path: faker.system.filePath(),
-          user_fk: 8
+          user_fk: 8,
+          conversation_fk: 9
         }
       ]);
     });
