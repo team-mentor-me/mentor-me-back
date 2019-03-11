@@ -43,7 +43,6 @@ router.post('/register', async (req, res) => {
       res.status(200).json({
         message: 'Registration successful',
         user_id: user.id,
-        role: user.role,
         token
       });
     } else {
@@ -69,14 +68,11 @@ router.post('/login', async (req, res) => {
     if (user) {
       if (bcrypt.compareSync(password, user.password)) {
         const token = tokenGenerator.newToken(user);
-        res
-          .status(200)
-          .json({
-            message: 'Login successful',
-            user_id: user.id,
-            role: user.role,
-            token
-          });
+        res.status(200).json({
+          message: 'Login successful',
+          user_id: user.id,
+          token
+        });
       } else {
         res
           .status(401)
