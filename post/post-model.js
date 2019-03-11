@@ -5,7 +5,8 @@ module.exports = {
   get,
   getPostById,
   remove,
-  getQuestions
+  getQuestions,
+  getQuestionsWithUsers
 };
 
 function get() {
@@ -20,6 +21,22 @@ function getPostById(id) {
 
 function getQuestions() {
   return db('post').where({ type: 'question' });
+}
+
+async function getQuestionsWithUsers() {
+  const questions = await db('post as p')
+    .join('user as u', 'p.user_fk', 'u.id')
+    .select(
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'p.category',
+      'u.id as user_id',
+      'u.name',
+      'u.photo'
+    );
+
+  return questions;
 }
 
 async function add(newPost) {

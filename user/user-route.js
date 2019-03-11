@@ -99,6 +99,8 @@ router.get('/users', auth, (req, res) => {
     );
 });
 
+// query user by id
+
 // apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;

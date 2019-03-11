@@ -2,6 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('post', table => {
     table.increments();
     table.text('post', 500);
+    table.text('description', 500);
     table.string('category', 255).notNullable();
     table.string('type').notNullable();
     table.string('photo_path');
