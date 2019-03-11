@@ -3,7 +3,7 @@ const db = require('../database/dbConfig');
 module.exports = {
   add,
   get,
-  getById,
+  getPostById,
   remove,
   getQuestions
 };
@@ -12,7 +12,7 @@ function get() {
   return db('post');
 }
 
-function getById(id) {
+function getPostById(id) {
   return db('post')
     .where({ id })
     .first();

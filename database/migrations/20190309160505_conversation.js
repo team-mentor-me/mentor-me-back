@@ -1,10 +1,10 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('conversation', table => {
-    table.increments('conversation_id');
+    table.increments();
     table
       .integer('user_fk')
       .unsigned()
-      .references('user_id')
+      .references('id')
       .inTable('user');
     table.timestamps(true, true);
   });
