@@ -24,21 +24,30 @@ function getQuestions() {
 }
 
 async function getQuestionsWithUsers() {
-  const questions = await db('post').where({ type: 'question' });
+  const questions = await db('post as p')
+    .join('user as u', 'p.user_fk', 'u.id')
+    .join('user_detail as d', 'p.user_fk', 'd.user_fk');
+  // .select(
+  //   'p.id as post_id',
+  //   'p.post',
+  //   // 'p.description',
+  //   'p.category',
+  //   'u.id as user_id',
+  //   'u.name',
+  //   'd.photo'
+  // );
 
-  const mappedQuestions = questions.map(question => {
-    return {
-      id: question.id,
-      post: question.post,
-      description: question.description,
-      category: question.category,
-      type: question.type,
+  // return db('post');
 
-      user_id: question.user_fk // using this fk, how do I get the user name and photo and nest it in
-    };
-  });
+  // then(post => {
+  //   db('user')
+  //     .where({ id: post.user_fk })
+  //     .then(user => {
+  //       post.user = user;
+  //     });
+  // });
 
-  return { mappedQuestions };
+  return questions;
 }
 
 async function add(newPost) {

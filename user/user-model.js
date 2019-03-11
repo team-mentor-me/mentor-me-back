@@ -19,7 +19,8 @@ function getBy(username) {
 }
 
 function getById(id) {
-  return db('user')
+  return db('user as u')
+    .select('u.id', 'u.name', 'u.role')
     .where({ id })
     .first();
 }

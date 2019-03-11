@@ -10,6 +10,7 @@ const router = express.Router();
 
 // data imports
 const posts = require('./post-model');
+const users = require('../user/user-model');
 
 // middleware
 const { auth } = require('../auth/auth');
@@ -76,9 +77,19 @@ router.get('/questions', auth, (req, res) => {
 router.get('/questions1', (req, res) => {
   posts
     .getQuestionsWithUsers()
-    .then(questions => {
-      res.json(questions);
-    })
+    .then(questions => res.status(200).json(questions))
+
+    // posts
+    //   .getQuestionsWithUsers()
+    //   .then(questions => {
+    //     questions.map(async q => {
+    //       await users.getById(q.user_fk).then(user => {
+    //         q.user = user;
+    //       });
+    //       res.status(200).json(questions);
+    //     });
+    //     // .catch(err => console.log(err));
+    //   })
     .catch(err =>
       res
         .status(500)
