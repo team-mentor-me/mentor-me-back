@@ -22,9 +22,11 @@ server.use(
 
 // route imports
 const userRouter = require('../user/user-route');
+const postRouter = require('../post/post-route');
 
 // apply routes
 server.use('/api', userRouter);
+server.use('/api', postRouter);
 
 server.get('/', (req, res) => {
   res.json({ message: 'Server is live!' });
