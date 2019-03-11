@@ -10,7 +10,6 @@ const router = express.Router();
 
 // data imports
 const posts = require('./post-model');
-const users = require('../user/user-model');
 
 // middleware
 const { auth } = require('../auth/auth');
