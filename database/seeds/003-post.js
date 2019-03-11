@@ -15,7 +15,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'question',
-          photo_path: faker.image.image(),
           user_fk: 1,
           conversation_fk: 1
         },
@@ -26,7 +25,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 4,
           conversation_fk: 1
         },
@@ -37,7 +35,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 1,
           conversation_fk: 1
         },
@@ -48,7 +45,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 4,
           conversation_fk: 1
         },
@@ -59,7 +55,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 1,
           conversation_fk: 1
         },
@@ -72,7 +67,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'question',
-          photo_path: faker.image.image(),
           user_fk: 2,
           conversation_fk: 2
         },
@@ -83,7 +77,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 5,
           conversation_fk: 2
         },
@@ -94,7 +87,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 2,
           conversation_fk: 2
         },
@@ -107,7 +99,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'question',
-          photo_path: faker.image.image(),
           user_fk: 3,
           conversation_fk: 3
         },
@@ -118,7 +109,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 5,
           conversation_fk: 3
         },
@@ -129,7 +119,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 3,
           conversation_fk: 3
         },
@@ -143,7 +132,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 1,
           conversation_fk: 4
         },
@@ -154,7 +142,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 4,
           conversation_fk: 4
         },
@@ -165,7 +152,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 1,
           conversation_fk: 4
         },
@@ -176,7 +162,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Photography',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 4,
           conversation_fk: 4
         },
@@ -189,7 +174,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'question',
-          photo_path: faker.image.image(),
           user_fk: 2,
           conversation_fk: 5
         },
@@ -200,7 +184,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 5,
           conversation_fk: 5
         },
@@ -211,7 +194,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 2,
           conversation_fk: 5
         },
@@ -222,7 +204,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 5,
           conversation_fk: 5
         },
@@ -233,7 +214,6 @@ exports.seed = function(knex, Promise) {
           description: 'extended question goes here',
           category: 'Development',
           type: 'message',
-          photo_path: faker.image.image(),
           user_fk: 5,
           conversation_fk: 5
         }
