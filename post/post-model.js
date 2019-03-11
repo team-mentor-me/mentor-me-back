@@ -4,7 +4,8 @@ module.exports = {
   add,
   get,
   getById,
-  remove
+  remove,
+  getQuestions
 };
 
 function get() {
@@ -15,6 +16,10 @@ function getById(id) {
   return db('post')
     .where({ id })
     .first();
+}
+
+function getQuestions() {
+  return db('post').where({ type: 'question' });
 }
 
 async function add(newPost) {
