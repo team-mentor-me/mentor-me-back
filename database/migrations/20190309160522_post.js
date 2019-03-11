@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('post', table => {
-    table.increments();
+    table.increments('post_id');
     table
       .text('post', 500)
       .notNullable()
@@ -12,12 +12,12 @@ exports.up = function(knex, Promise) {
     table
       .integer('user_fk')
       .unsigned()
-      .references('id')
+      .references('user_id')
       .inTable('user');
     table
       .integer('conversation_fk')
       .unsigned()
-      .references('id')
+      .references('conversation_id')
       .inTable('conversation');
     table.timestamps(true, true);
   });

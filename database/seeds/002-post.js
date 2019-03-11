@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
       return knex('post').insert([
         // conversation id 1
         {
-          id: 1,
+          post_id: 1,
           created_at: '2019-03-05T05:18:46.713Z',
           post: "What's the relationship between aperture and ISO?",
           category: 'Photography',
@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 1
         },
         {
-          id: 6,
+          post_id: 2,
           created_at: '2019-03-05T05:18:55.713Z',
           post: 'message from mentor',
           category: 'Photography',
@@ -29,7 +29,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 1
         },
         {
-          id: 7,
+          post_id: 3,
           created_at: '2019-03-06T05:24:56.713Z',
           post: 'message from entrepreneur',
           category: 'Photography',
@@ -39,7 +39,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 1
         },
         {
-          id: 8,
+          post_id: 4,
           created_at: '2019-03-06T05:24:57.713Z',
           post: 'message from mentor',
           category: 'Photography',
@@ -49,7 +49,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 1
         },
         {
-          id: 9,
+          post_id: 5,
           created_at: '2019-03-06T05:24:58.713Z',
           post: 'message from entrepreneur',
           category: 'Photography',
@@ -61,7 +61,7 @@ exports.seed = function(knex, Promise) {
 
         // conversation id 2
         {
-          id: 11,
+          post_id: 6,
           created_at: '2019-03-02T04:18:46.713Z',
           post: 'What is the difference between a SQL and a NoSQL database?',
           category: 'Development',
@@ -71,7 +71,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 2
         },
         {
-          id: 12,
+          post_id: 7,
           created_at: '2019-03-07T06:24:47.713Z',
           post: 'message from mentor',
           category: 'Development',
@@ -81,7 +81,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 2
         },
         {
-          id: 13,
+          post_id: 8,
           created_at: '2019-03-07T06:24:48.713Z',
           post: 'message from entrepreneur',
           category: 'Development',
@@ -93,7 +93,7 @@ exports.seed = function(knex, Promise) {
 
         // conversation id 3
         {
-          id: 14,
+          post_id: 9,
           created_at: '2019-03-12T01:23:50.713Z',
           post: 'Where to I start when building a local server?',
           category: 'Development',
@@ -103,29 +103,29 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 3
         },
         {
-          id: 15,
+          post_id: 10,
           created_at: '2019-03-07T06:24:51.713Z',
           post: 'message from mentor',
           category: 'Development',
           type: 'message',
           photo_path: faker.image.image(),
-          user_fk: 2,
+          user_fk: 5,
           conversation_fk: 3
         },
         {
-          id: 16,
+          post_id: 11,
           created_at: '2019-03-07T06:24:52.713Z',
           post: 'message from entrepreneur',
           category: 'Development',
           type: 'message',
           photo_path: faker.image.image(),
-          user_fk: 2,
+          user_fk: 3,
           conversation_fk: 3
         },
         // conversation id 4
 
         {
-          id: 18,
+          post_id: 12,
           created_at: '2019-03-10T08:18:52.713Z',
           post:
             'How do I stand out in a sea of photos that are all edited the same?',
@@ -136,7 +136,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 4
         },
         {
-          id: 27,
+          post_id: 13,
           created_at: '2019-03-10T05:24:54.713Z',
           post: 'message from entrepreneur',
           category: 'Photography',
@@ -146,7 +146,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 4
         },
         {
-          id: 28,
+          post_id: 14,
           created_at: '2019-03-10T05:24:55.713Z',
           post: 'message from mentor',
           category: 'Photography',
@@ -156,7 +156,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 4
         },
         {
-          id: 29,
+          post_id: 15,
           created_at: '2019-03-10T05:24:56.713Z',
           post: 'message from entrepreneur',
           category: 'Photography',
@@ -168,7 +168,7 @@ exports.seed = function(knex, Promise) {
 
         // conversation id 5
         {
-          id: 55,
+          post_id: 16,
           created_at: '2019-03-14T02:18:46.713Z',
           post: 'How do I keep my api key secret when publishing my work?',
           category: 'Development',
@@ -178,7 +178,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 5
         },
         {
-          id: 56,
+          post_id: 17,
           created_at: '2019-03-07T06:24:47.713Z',
           post: 'message from mentor',
           category: 'Development',
@@ -188,7 +188,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 5
         },
         {
-          id: 57,
+          post_id: 18,
           created_at: '2019-03-07T06:25:48.713Z',
           post: 'message from entrepreneur',
           category: 'Development',
@@ -198,7 +198,7 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 5
         },
         {
-          id: 58,
+          post_id: 19,
           created_at: '2019-03-07T06:26:46.713Z',
           post: 'message from mentor',
           category: 'Development',
@@ -208,8 +208,8 @@ exports.seed = function(knex, Promise) {
           conversation_fk: 5
         },
         {
-          id: 59,
-          created_at: '2019-03-07T06:27 :46.713Z',
+          post_id: 20,
+          created_at: '2019-03-07T06:27:46.713Z',
           post: 'message from mentor',
           category: 'Development',
           type: 'message',

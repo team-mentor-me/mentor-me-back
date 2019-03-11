@@ -44,7 +44,7 @@ router.post('/posts', auth, async (req, res) => {
   }
 });
 
-// protected route, admin access only
+// get all posts
 router.get('/posts', auth, (req, res) => {
   posts
     .get()
