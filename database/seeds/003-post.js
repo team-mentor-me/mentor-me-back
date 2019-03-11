@@ -12,6 +12,7 @@ exports.seed = function(knex, Promise) {
           id: 1,
           created_at: '2019-03-05T05:18:46.713Z',
           post: "What's the relationship between aperture and ISO?",
+          // description: 'extended question',
           category: 'Photography',
           type: 'question',
           photo_path: faker.image.image(),

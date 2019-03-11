@@ -72,6 +72,20 @@ router.get('/questions', auth, (req, res) => {
     );
 });
 
+//
+router.get('/questions1', (req, res) => {
+  posts
+    .getQuestionsWithUsers()
+    .then(questions => {
+      res.json(questions);
+    })
+    .catch(err =>
+      res
+        .status(500)
+        .json({ message: 'Internal server error or invalid token' })
+    );
+});
+
 // apply admin to this endpoint and move to restricted
 router.delete('/posts/:id', async (req, res) => {
   const id = req.params.id;

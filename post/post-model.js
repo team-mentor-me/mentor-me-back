@@ -5,7 +5,8 @@ module.exports = {
   get,
   getPostById,
   remove,
-  getQuestions
+  getQuestions,
+  getQuestionsWithUsers
 };
 
 function get() {
@@ -20,6 +21,24 @@ function getPostById(id) {
 
 function getQuestions() {
   return db('post').where({ type: 'question' });
+}
+
+async function getQuestionsWithUsers() {
+  const questions = await db('post').where({ type: 'question' });
+
+  const mappedQuestions = questions.map(question => {
+    return {
+      id: question.id,
+      post: question.post,
+      description: question.description,
+      category: question.category,
+      type: question.type,
+
+      user_id: question.user_fk // using this fk, how do I get the user name and photo and nest it in
+    };
+  });
+
+  return { mappedQuestions };
 }
 
 async function add(newPost) {
