@@ -20,6 +20,7 @@
   "homepage": "https://github.com/team-mentor-me/mentor-me-back",
   "devDependencies": {
     "faker": "^4.1.0",
+    "knex-cleaner": "^1.1.4",
     "nodemon": "^1.18.10"
   },
   "dependencies": {

@@ -9,6 +9,8 @@ exports.up = function(knex, Promise) {
     table.string('name', 255).notNullable();
     table.string('email', 255).notNullable();
     table.string('role', 255).notNullable();
+    table.string('about', 255);
+    table.string('photo', 255).notNullable();
     table.timestamps(true, true);
   });
 };

@@ -60,35 +60,11 @@ router.get('/posts', auth, (req, res) => {
 });
 
 // get all questions
-router.get('/questions', auth, (req, res) => {
-  posts
-    .getQuestions()
-    .then(questions => {
-      res.json({ questions });
-    })
-    .catch(err =>
-      res
-        .status(500)
-        .json({ message: 'Internal server error or invalid token' })
-    );
-});
-
-//
-router.get('/questions1', (req, res) => {
+router.get('/questions', (req, res) => {
   posts
     .getQuestionsWithUsers()
     .then(questions => res.status(200).json(questions))
 
-    // posts
-    //   .getQuestionsWithUsers()
-    //   .then(questions => {
-    //     questions.map(async q => {
-    //       await users.getById(q.user_fk).then(user => {
-    //         q.user = user;
-    //       });
-    //       res.status(200).json(questions);
-    //     });
-    //     // .catch(err => console.log(err));
     //   })
     .catch(err =>
       res

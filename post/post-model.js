@@ -26,26 +26,15 @@ function getQuestions() {
 async function getQuestionsWithUsers() {
   const questions = await db('post as p')
     .join('user as u', 'p.user_fk', 'u.id')
-    .join('user_detail as d', 'p.user_fk', 'd.user_fk');
-  // .select(
-  //   'p.id as post_id',
-  //   'p.post',
-  //   // 'p.description',
-  //   'p.category',
-  //   'u.id as user_id',
-  //   'u.name',
-  //   'd.photo'
-  // );
-
-  // return db('post');
-
-  // then(post => {
-  //   db('user')
-  //     .where({ id: post.user_fk })
-  //     .then(user => {
-  //       post.user = user;
-  //     });
-  // });
+    .select(
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'p.category',
+      'u.id as user_id',
+      'u.name',
+      'u.photo'
+    );
 
   return questions;
 }
