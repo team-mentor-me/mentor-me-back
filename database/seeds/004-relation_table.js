@@ -1,10 +1,10 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name')
+  return knex('relation_table')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('relation_table').insert([
         { user_fk: 1, conversation_fk: 1 },
         { user_fk: 4, conversation_fk: 1 },
 
