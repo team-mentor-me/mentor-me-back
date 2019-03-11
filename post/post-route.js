@@ -58,7 +58,7 @@ router.get('/posts', auth, (req, res) => {
     );
 });
 
-// get all questions
+// get all questions with user information
 router.get('/questions', (req, res) => {
   posts
     .getQuestionsWithUsers()
@@ -72,6 +72,10 @@ router.get('/questions', (req, res) => {
     );
 });
 
+// add patch request for post
+
+// add query for question by id
+
 // apply admin to this endpoint and move to restricted
 router.delete('/posts/:id', async (req, res) => {
   const id = req.params.id;
@@ -79,7 +83,7 @@ router.delete('/posts/:id', async (req, res) => {
   try {
     const count = await posts.remove(id);
     if (count === 1) {
-      res.status(202).json({ message: `Post successfully deleted` });
+      res.status(202).json({ message: `Post successfully deleted`, id });
     } else {
       res
         .status(404)
