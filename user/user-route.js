@@ -38,6 +38,8 @@ router.post('/register', async (req, res) => {
 
   try {
     const user = await users.add(newUser);
+    console.log(user);
+
     if (user) {
       const token = tokenGenerator.newToken(user);
       res.status(200).json({
@@ -100,7 +102,6 @@ router.get('/users', auth, (req, res) => {
 });
 
 // query user by id
-
 router.get('/user/:id', async (req, res) => {
   const id = req.params.id;
 
@@ -136,8 +137,6 @@ router.delete('/user/:id', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-// get user name, about by id
 
 // logout handles on client side, must destroy token
 module.exports = router;

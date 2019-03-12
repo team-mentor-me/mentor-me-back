@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
     table.string('email', 255).notNullable();
     table.string('role', 255).notNullable();
     table.string('about', 255);
-    table.string('photo', 255).notNullable();
+    table.string('photo', 255);
     table.timestamps(true, true);
   });
 };
