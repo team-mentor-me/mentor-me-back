@@ -101,6 +101,24 @@ router.get('/users', auth, (req, res) => {
 
 // query user by id
 
+router.get('/user/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const user = await users.getById(id);
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ message: `No user with matching id, please try again.` });
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 // apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;

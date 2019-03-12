@@ -20,7 +20,15 @@ function getBy(username) {
 
 function getById(id) {
   return db('user as u')
-    .select('u.id', 'u.name', 'u.role')
+    .select(
+      'u.id',
+      'u.username',
+      'u.name',
+      'u.email',
+      'u.role',
+      'u.about',
+      'u.photo'
+    )
     .where({ id })
     .first();
 }
