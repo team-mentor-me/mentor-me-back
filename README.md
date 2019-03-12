@@ -109,6 +109,7 @@ Argument
     “description": “string”,
     “category”: “string"
     “type": “string”,
-    “user_fk": “string”
+    “user_fk": number
+    "conversation_fk": number  // optional
   }
 ```
