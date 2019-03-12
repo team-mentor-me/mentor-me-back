@@ -58,7 +58,6 @@ router.get('/posts', auth, (req, res) => {
     );
 });
 
-// get all questions with user information
 router.get('/questions', (req, res) => {
   posts
     .getQuestionsWithUsers()

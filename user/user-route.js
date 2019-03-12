@@ -118,7 +118,6 @@ router.get('/user/:id', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 // apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;
