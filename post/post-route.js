@@ -3,7 +3,6 @@ require('dotenv').config();
 
 // package imports
 const express = require('express');
-const bcrypt = require('bcryptjs');
 
 // router extension
 const router = express.Router();
