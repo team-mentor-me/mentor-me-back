@@ -18,15 +18,15 @@ server.use(
   // axios.defaults.withCredentials = true;
 );
 
-// data imports
-
 // route imports
 const userRouter = require('../user/user-route');
 const postRouter = require('../post/post-route');
+const conversationRouter = require('../conversation/conversation-route');
 
 // apply routes
 server.use('/api', userRouter);
 server.use('/api', postRouter);
+server.use('/api', conversationRouter);
 
 server.get('/', (req, res) => {
   res.json({ message: 'Server is live!' });

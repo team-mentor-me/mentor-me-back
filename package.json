@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/team-mentor-me/mentor-me-back",
   "devDependencies": {
-    "faker": "^4.1.0",
     "knex-cleaner": "^1.1.4",
     "nodemon": "^1.18.10"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
@@ -32,6 +32,6 @@
     "jsonwebtoken": "^8.5.0",
     "knex": "^0.16.3",
     "morgan": "^1.9.1",
-    "pg": "^7.8.1"
+    "pg": "^7.8.2"
   }
 }
