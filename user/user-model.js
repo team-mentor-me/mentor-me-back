@@ -21,7 +21,7 @@ function getBy(username) {
 function getById(id) {
   return db('user as u')
     .select(
-      'u.id',
+      'u.id as user_id',
       'u.username',
       'u.name',
       'u.email',
@@ -41,6 +41,7 @@ async function add(newUser) {
     .first();
 }
 
+// cannot delete user if relation exists
 function remove(id) {
   return db('user')
     .where({ id })
