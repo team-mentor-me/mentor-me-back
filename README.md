@@ -47,6 +47,8 @@ Return
     "user_id": number,
     "token": “abcd"
   }
+
+  Database generates id and timestamp.
 ```
 
 ## Questions - GET
@@ -110,6 +112,10 @@ Argument
     “category”: “string"
     “type": “string”,
     “user_fk": number
+    "photo_path": "string", // optional
+    "file_path": "string" // optional
     "conversation_fk": number  // optional
   }
+
+  Database generates id and timestamp.
 ```
