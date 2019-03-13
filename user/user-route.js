@@ -119,6 +119,24 @@ router.get('/user/:id', auth, async (req, res) => {
   }
 });
 
+// update user information by id
+router.patch('/user/:id', async (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
+
+  try {
+    const count = await users.update(id, changes);
+
+    if (count === 0) {
+      res.status(404).json({ message: 'User count not be found' });
+    } else {
+      res.status(200).json({ message: 'Update successful' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
+
 // apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;
