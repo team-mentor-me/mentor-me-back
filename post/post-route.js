@@ -58,7 +58,7 @@ router.get('/posts', auth, (req, res) => {
 });
 
 // get questions with user information included
-router.get('/questions', (req, res) => {
+router.get('/questions', auth, (req, res) => {
   posts
     .getQuestionsWithUsers()
     .then(questions => res.status(200).json(questions))
@@ -72,7 +72,7 @@ router.get('/questions', (req, res) => {
 });
 
 // get post by id
-router.get('/posts/:id', async (req, res) => {
+router.get('/posts/:id', auth, async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -108,7 +108,7 @@ router.patch('/posts/:id', async (req, res) => {
 });
 
 // delete post by id
-router.delete('/posts/:id', async (req, res) => {
+router.delete('/posts/:id', auth, async (req, res) => {
   const id = req.params.id;
 
   try {
