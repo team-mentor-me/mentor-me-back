@@ -57,6 +57,7 @@ router.get('/posts', auth, (req, res) => {
     );
 });
 
+// get questions with user information included
 router.get('/questions', (req, res) => {
   posts
     .getQuestionsWithUsers()
@@ -70,25 +71,7 @@ router.get('/questions', (req, res) => {
     );
 });
 
-// patch post by id,
-router.patch('/posts/:id', async (req, res) => {
-  const id = req.params.id;
-  const changes = req.body;
-
-  try {
-    const count = await posts.update(id, changes);
-
-    if (count === 0) {
-      res.status(404).json({ message: 'Post count not be found' });
-    } else {
-      res.status(200).json({ message: 'Update successful' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Internal server error or invalid token' });
-  }
-});
-
-// return post by id
+// get post by id
 router.get('/posts/:id', async (req, res) => {
   const id = req.params.id;
 
@@ -100,6 +83,24 @@ router.get('/posts/:id', async (req, res) => {
         .json({ message: `No user with matching id, please try again.` });
     } else {
       res.status(200).json(post);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
+
+// patch post by id
+router.patch('/posts/:id', async (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
+
+  try {
+    const count = await posts.update(id, changes);
+
+    if (count === 0) {
+      res.status(404).json({ message: 'Post count not be found' });
+    } else {
+      res.status(200).json({ message: 'Update successful' });
     }
   } catch (error) {
     res.status(500).json({ message: 'Internal server error or invalid token' });
