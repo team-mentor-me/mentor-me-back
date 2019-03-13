@@ -4,7 +4,8 @@ module.exports = {
   getById,
   add,
   remove,
-  getConversationIds
+  getConversationIds,
+  conversationsByUser
 };
 
 // query conversation between users
@@ -47,4 +48,22 @@ function remove(id) {
   return db('conversation')
     .where({ id })
     .delete();
+}
+
+async function conversationsByUser(id) {
+  const messages = db('relation_table as r')
+    .where('r.user_fk', id)
+    .join('conversation as c', 'r.conversation_fk', 'c.id')
+    .join('post as p', 'c.id', 'p.conversation_fk')
+    .select(
+      'p.user_fk',
+      'p.conversation_fk',
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'p.category',
+      'p.type'
+    );
+
+  return messages;
 }

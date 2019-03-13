@@ -29,21 +29,12 @@ router.get('/conversations/:id', async (req, res) => {
 });
 
 // get conversation list by user id -- in progress -- not tested
-router.get('/test/:id', async (req, res) => {
+router.get('/conversation-list/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const { user_id, name, username, photo } = await users.getById(id);
-    const ids = await conversations.getConversationIds(id);
+    const conversation_ids = await conversations.getConversationIds(id);
 
-    const list = await ids
-      .map(id =>
-        conversations.getById(id).then(conversation => {
-          return { ...conversation };
-        })
-      )
-      .catch(err => console.log(err));
-
-    res.status(200).json({ user_id, name, username, photo, list: [...list] });
+    res.status(200).json(conversation_ids);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error or invalid token' });
   }

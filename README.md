@@ -232,3 +232,13 @@ Return
     }, ...
   ]
 ```
+
+### Get conversation ids for a user by user id - GET
+
+```
+return
+[
+  number,
+  number
+]
+```
