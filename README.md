@@ -4,7 +4,9 @@ Mentor me app let entrepreneurs who are just starting out or small business owne
 
 # RESTful API Endpoints
 
-## Register - POST
+## User Endpoints
+
+### Register new user - POST
 
 https://bw-mentor-me.herokuapp.com/api/register
 
@@ -16,6 +18,7 @@ Argument
     "name": "string",
     "email": "string",
     "role": "string",
+    "photo": "string", // optional
   }
 ```
 
@@ -28,7 +31,7 @@ Return
 }
 ```
 
-## Login - POST
+### Login existing user - POST
 
 https://bw-mentor-me.herokuapp.com/api/login
 
@@ -51,7 +54,58 @@ Return
   Database generates id and timestamp.
 ```
 
-## Questions - GET
+### Get all users - GET - RESTRICTED
+
+https://bw-mentor-me.herokuapp.com/api/users
+
+```
+Return
+  [
+    {
+      "user_id": number,
+      "username": “string",
+      "name": “string",
+      "email": “string",
+      "role": “string",
+      "about": “string",
+      "photo": “string"
+    }, ...
+  ]
+```
+
+### Get user by id - GET
+
+https://bw-mentor-me.herokuapp.com/api/user/:id
+
+```
+Return
+  {
+    "user_id": number,
+    "username": “string",
+    "name": “string",
+    "email": “string",
+    "role": “string",
+    "about": “string",
+    "photo": “string"
+  }
+```
+
+## Delete user by id - DELETE - RESTRICTED
+
+https://bw-mentor-me.herokuapp.com/api/user/:id
+
+Note: cannot delete user if they have messages.
+
+```
+Return
+  {
+    "message": "User successfully deleted"
+  }
+```
+
+## Posts Endpoints - question / message
+
+### Get questions - GET
 
 https://bw-mentor-me.herokuapp.com/api/questions
 
@@ -70,37 +124,7 @@ Return
   ]
 ```
 
-## User by id - GET
-
-https://bw-mentor-me.herokuapp.com/api/user/1
-
-```
-Return
-  {
-    "user_id": number,
-    "username": “string",
-    "name": “string",
-    "email": “string",
-    "role": “string",
-    "about": “string",
-    "photo": “string"
-  }
-```
-
-## Delete user by id - DELETE
-
-https://bw-mentor-me.herokuapp.com/api/user/6
-
-Note: cannot delete user if they have messages.
-
-```
-Return
-  {
-    "message": "User successfully deleted"
-  }
-```
-
-## Post - POST
+### Add new post - POST
 
 https://bw-mentor-me.herokuapp.com/api/posts
 
@@ -118,4 +142,77 @@ Argument
   }
 
   Database generates id and timestamp.
+```
+
+### Get post by id - GET
+
+https://bw-mentor-me.herokuapp.com/api/posts/:id
+
+```
+Return
+{
+    "post_id": number,
+    "post": "string",
+    "description": "string",
+    "user_id": number,
+    "name": "string",
+    "photo": "string"
+}
+```
+
+### Update post by id - PATCH
+
+https://bw-mentor-me.herokuapp.com/api/posts/:id
+
+```
+Optional Arguments
+  {
+    "post": “string",
+    "description": “string",
+    "category": “string",
+    "type": "string",
+    "photo_path": “string",
+    "file_path": “string"
+  }
+```
+
+### Delete post by id - DELETE
+
+https://bw-mentor-me.herokuapp.com/api/posts/:id
+
+```
+Return
+    { deleted: id }
+```
+
+## Conversation Endpoints
+
+### Get conversation between two users by conversation id - GET
+
+https://bw-mentor-me.herokuapp.com/api/conversations/:id
+
+```
+Return
+  [
+      {
+        "post_id": 1,
+        "post": "What's the relationship between aperture and ISO?",
+        "description": "extended question goes here",
+        "category": "Photography",
+        "type": "question",
+        "conversation_fk": 1,
+        "user_id": 1,
+        "name": "Angello Lopez"
+    },
+    {
+        "post_id": 4,
+        "post": "message from mentor",
+        "description": null, // will be null for non-question
+        "category": "Photography",
+        "type": "message",
+        "conversation_fk": 1,
+        "user_id": 4,
+        "name": "Lucy Lee"
+    }, ...
+  ]
 ```

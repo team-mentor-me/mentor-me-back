@@ -14,11 +14,21 @@ function get() {
   return db('post');
 }
 
-function getPostById(id) {
-  return db('post as p')
-    .select('p.id as post_id', 'p.post', 'p.description')
-    .where({ id })
+async function getPostById(id) {
+  const post = await db('post as p')
+    .join('user as u', 'p.user_fk', 'u.id')
+    .select(
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'u.id as user_id',
+      'u.name',
+      'u.photo'
+    )
+    .where('p.id', id)
     .first();
+
+  return post;
 }
 
 function getQuestions() {

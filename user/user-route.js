@@ -100,8 +100,8 @@ router.get('/users', auth, (req, res) => {
     );
 });
 
-// query user by id
-router.get('/user/:id', async (req, res) => {
+// get user by id
+router.get('/user/:id', auth, async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -118,6 +118,7 @@ router.get('/user/:id', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 // apply admin to this endpoint and move to restricted
 router.delete('/user/:id', async (req, res) => {
   const id = req.params.id;
