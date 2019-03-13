@@ -70,18 +70,50 @@ router.get('/questions', (req, res) => {
     );
 });
 
-// add patch request for post
+// patch post by id,
+router.patch('/posts/:id', async (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
 
-// add query for question by id
+  try {
+    const count = await posts.update(id, changes);
 
-// apply admin to this endpoint and move to restricted
+    if (count === 0) {
+      res.status(404).json({ message: 'Post count not be found' });
+    } else {
+      res.status(200).json({ message: 'Update successful' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
+
+// return post by id
+router.get('/posts/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const post = await posts.getPostById(id);
+    if (!post) {
+      res
+        .status(404)
+        .json({ message: `No user with matching id, please try again.` });
+    } else {
+      res.status(200).json(post);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
+
+// delete post by id
 router.delete('/posts/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
     const count = await posts.remove(id);
     if (count === 1) {
-      res.status(202).json({ message: `Post successfully deleted`, id });
+      res.status(202).json({ deleted: id });
     } else {
       res
         .status(404)

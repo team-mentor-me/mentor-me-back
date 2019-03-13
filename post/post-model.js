@@ -6,7 +6,8 @@ module.exports = {
   getPostById,
   remove,
   getQuestions,
-  getQuestionsWithUsers
+  getQuestionsWithUsers,
+  update
 };
 
 function get() {
@@ -14,7 +15,8 @@ function get() {
 }
 
 function getPostById(id) {
-  return db('post')
+  return db('post as p')
+    .select('p.id as post_id', 'p.post', 'p.description')
     .where({ id })
     .first();
 }
@@ -51,4 +53,10 @@ function remove(id) {
   return db('post')
     .where({ id })
     .delete();
+}
+
+function update(id, changes) {
+  return db('post')
+    .where({ id })
+    .update(changes);
 }
