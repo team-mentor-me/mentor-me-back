@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
 
     if (user) {
       const token = tokenGenerator.newToken(user);
-      res.status(200).json({
+      res.status(201).json({
         message: 'Registration successful',
         user_id: user.id,
         token
