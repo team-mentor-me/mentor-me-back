@@ -66,7 +66,7 @@ router.post('/login', async (req, res) => {
 
   try {
     const user = await users.getBy(username);
-
+    // admin user account for demo purposes. Bypasses password comparison. Remove for production.
     if (user.username === 'admin' && user.password === 'password') {
       const token = tokenGenerator.newToken(user);
       res.status(200).json({
