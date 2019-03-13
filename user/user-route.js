@@ -128,7 +128,7 @@ router.get('/user/:id', auth, async (req, res) => {
 });
 
 // update user information by id
-router.patch('/user/:id', async (req, res) => {
+router.patch('/user/:id', auth, async (req, res) => {
   const id = req.params.id;
   const changes = req.body;
 
@@ -146,7 +146,7 @@ router.patch('/user/:id', async (req, res) => {
 });
 
 // apply admin to this endpoint and move to restricted
-router.delete('/user/:id', async (req, res) => {
+router.delete('/user/:id', auth, async (req, res) => {
   const id = req.params.id;
 
   try {
