@@ -72,7 +72,23 @@ router.get('/questions', (req, res) => {
 
 // add patch request for post
 
-// add query for question by id
+// return post by id
+router.get('/posts/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const post = await posts.getPostById(id);
+    if (!post) {
+      res
+        .status(404)
+        .json({ message: `No user with matching id, please try again.` });
+    } else {
+      res.status(200).json(post);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
 
 // apply admin to this endpoint and move to restricted
 router.delete('/posts/:id', async (req, res) => {
