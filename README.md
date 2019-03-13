@@ -90,6 +90,22 @@ Return
   }
 ```
 
+### Update user by id - PATCH
+
+https://bw-mentor-me.herokuapp.com/api/user/:id
+
+```
+Optional Arguments
+  {
+    "username": "string",
+    "name": "string",
+    "email": "string",
+    "role": "string",
+    "about": "string",
+    "photo": "string"
+  }
+```
+
 ## Delete user by id - DELETE - RESTRICTED
 
 https://bw-mentor-me.herokuapp.com/api/user/:id
