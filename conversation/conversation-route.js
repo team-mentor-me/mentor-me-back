@@ -32,9 +32,7 @@ router.get('/conversations/:id', async (req, res) => {
 router.get('/conversation-list/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await users.getById(id);
     const conversation_ids = await conversations.getConversationIds(id);
-    // const conversation_list = await conversations.conversationsByUser(id);
 
     res.status(200).json(conversation_ids);
   } catch (error) {
