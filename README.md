@@ -18,6 +18,7 @@ Argument
     "name": "string",
     "email": "string",
     "role": "string",
+    "photo": "string", // optional
   }
 ```
 
@@ -149,11 +150,14 @@ https://bw-mentor-me.herokuapp.com/api/posts/:id
 
 ```
 Return
-    {
-      "post_id": number,
-      "post": “string",
-      "description": “string"
-    }
+{
+    "post_id": number,
+    "post": "string",
+    "description": "string",
+    "user_id": number,
+    "name": "string",
+    "photo": "string"
+}
 ```
 
 ### Update post by id - PATCH
