@@ -80,7 +80,7 @@ router.get('/posts/:id', async (req, res) => {
     if (!post) {
       res
         .status(404)
-        .json({ message: `No user with matching id, please try again.` });
+        .json({ message: `No post with matching id, please try again.` });
     } else {
       res.status(200).json(post);
     }
