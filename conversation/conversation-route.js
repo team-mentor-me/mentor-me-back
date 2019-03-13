@@ -6,8 +6,6 @@ const router = express.Router();
 
 // data import
 const conversations = require('./conversation-model');
-const users = require('../user/user-model');
-const posts = require('../post/post-model');
 
 // get messages from a conversation by id
 router.get('/conversations/:id', async (req, res) => {

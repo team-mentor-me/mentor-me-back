@@ -18,6 +18,9 @@ server.use(
   // axios.defaults.withCredentials = true;
 );
 
+// middleware
+const { auth } = require('../auth/auth');
+
 // route imports
 const userRouter = require('../user/user-route');
 const postRouter = require('../post/post-route');
@@ -25,8 +28,8 @@ const conversationRouter = require('../conversation/conversation-route');
 
 // apply routes
 server.use('/api', userRouter);
-server.use('/api', postRouter);
-server.use('/api', conversationRouter);
+server.use('/api', auth, postRouter);
+server.use('/api', auth, conversationRouter);
 
 server.get('/', (req, res) => {
   res.json({ message: 'Server is live!' });
