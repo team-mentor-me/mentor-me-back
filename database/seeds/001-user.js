@@ -8,8 +8,8 @@ exports.seed = function(knex, Promise) {
         {
           id: 1,
           created_at: '2019-03-10T05:18:46.713Z',
-          username: 'Angelllo',
-          password: '$2a$0J9HuuNmX52aLzoT/DQvw4z6RWNRWgwMjO2iC',
+          username: 'admin',
+          password: 'password',
           name: 'Angello Lopez',
           email: 'angello@gmail.com',
           about:
