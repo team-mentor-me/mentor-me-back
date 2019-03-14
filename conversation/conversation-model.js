@@ -2,10 +2,11 @@ const db = require('../database/dbConfig');
 
 module.exports = {
   getById,
-  add,
-  remove,
   getConversationIds,
-  conversationsByUser
+  conversationsByUser,
+  // add,
+  remove,
+  testingEndpoint
 };
 
 // query conversation between users
@@ -36,20 +37,6 @@ async function getConversationIds(id) {
   return mapped;
 }
 
-async function add(newUser) {
-  const [id] = await db('conversation').insert(newUser, 'id');
-
-  return db('conversation')
-    .where({ id })
-    .first();
-}
-
-function remove(id) {
-  return db('conversation')
-    .where({ id })
-    .delete();
-}
-
 async function conversationsByUser(id) {
   const messages = db('relation_table as r')
     .where('r.user_fk', id)
@@ -66,4 +53,37 @@ async function conversationsByUser(id) {
     );
 
   return messages;
+}
+
+// model not currently working, trying to generate conversation and receive id back.
+// async function add() {
+//   const [id] = await db('conversation').insert(null, 'id');
+
+//   return db('conversation')
+//     .where({ id })
+//     .first();
+// }
+
+function remove(id) {
+  return db('conversation')
+    .where({ id })
+    .delete();
+}
+
+async function testingEndpoint(id) {
+  const ids = await db('relation_table as r')
+    .join('conversation as c', 'r.conversation_fk', 'c.id')
+    .join('post as p', 'c.id', 'p.conversation_fk')
+    .join('user as u', 'r.user_fk', 'u.id')
+    .select(
+      'p.id as post_id',
+      'post',
+      'r.user_fk as user_id',
+      'u.name',
+      'r.conversation_fk as conversation_id'
+    )
+    // .groupBy('r.conversation_fk')
+    .orderBy('p.id');
+
+  return ids;
 }

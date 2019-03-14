@@ -29,8 +29,7 @@ router.post('/posts', async (req, res) => {
   try {
     const post = await posts.add(newPost);
     if (post) {
-      res.status(200).json({
-        message: 'Post creation successful',
+      res.status(201).json({
         post_id: post.id
         // FE may want more post content returned?
       });
