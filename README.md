@@ -2,6 +2,39 @@
 
 Mentor me app let entrepreneurs who are just starting out or small business owners to ask for advices or guidances on various business topics from (qualified) business professionals working in the industries for free.
 
+### Designed and coded by Alex King https://github.com/alex-ak.
+
+## Technology Used
+
+- Server: Node.js | Express
+- Authentication: Bcrypt & JWT.
+- Database Builder: Knex.js
+- Testing Database: Jest | Supertest | SQLite3
+- Production & Development Database: PostgreSQL
+- Package management: yarn
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+- Clone github repository onto your local machine
+- Change directory into project folder.
+- Run yarn `yarn install`
+- Start server `yarn server`
+
+## Add environment variables - example .env template
+
+```
+DATABASE_URL=connect to personal database
+SECRET=input your secret for password hashing here
+DB_ENV=development
+PORT=4000
+```
+
+# Database Schema
+
+![Mentor Me Database Schema](database/data-schema.png)
+
 # RESTful API Endpoints
 
 ## User Endpoints
@@ -170,6 +203,7 @@ Return
     "post_id": number,
     "post": "string",
     "description": "string",
+    "category": "string",
     "user_id": number,
     "name": "string",
     "photo": "string"
