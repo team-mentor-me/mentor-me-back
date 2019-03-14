@@ -1,6 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('conversation', table => {
     table.increments();
+    table.boolean('active');
     table
       .integer('user_fk')
       .unsigned()
