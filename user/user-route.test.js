@@ -22,7 +22,7 @@ describe('User', () => {
     await db('user').truncate();
   });
 
-  it('POST register 201 Created and JSON', async () => {
+  it.skip('POST register 201 Created and JSON', async () => {
     const res = await request(server)
       .post('/api/register')
       .send(newUser)
@@ -30,7 +30,7 @@ describe('User', () => {
       .expect(201);
   });
 
-  it('POST login 200 OK and JSON', async () => {
+  it.skip('POST login 200 OK and JSON', async () => {
     await request(server)
       .post('/api/register')
       .send(newUser)
@@ -44,7 +44,7 @@ describe('User', () => {
       .expect(200);
   });
 
-  it('GET use by id return 200 OK and return JSON', async () => {
+  it.skip('GET use by id return 200 OK and return JSON', async () => {
     await request(server)
       .post('/api/register')
       .send(newUser);

@@ -21,7 +21,7 @@ describe('Post', () => {
     await db('post').truncate();
   });
 
-  it('POST post 201 Created and JSON', async () => {
+  it.skip('POST post 201 Created and JSON', async () => {
     await request(server)
       .post('/api/posts')
       .set({ Authorization: token })
@@ -29,7 +29,7 @@ describe('Post', () => {
       .expect(201);
   });
 
-  it('GET posts 200 OK and JSON', async () => {
+  it.skip('GET posts 200 OK and JSON', async () => {
     await request(server)
       .post('/api/posts')
       .set({ Authorization: token })

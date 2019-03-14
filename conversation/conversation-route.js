@@ -39,12 +39,18 @@ router.get('/conversation-list/:id', async (req, res) => {
 });
 
 // in development, endpoint not currently working
-router.post('/conversations-test', async (req, res) => {
+router.post('/conversations', async (req, res) => {
   try {
-    const conversation = await conversations.add();
+    const conversation = await conversations.add({ active: 'true' });
+
     console.log(conversation);
     if (conversation) {
-      res.status(201).json({ message: 'Conversation created' });
+      res
+        .status(201)
+        .json({
+          message: 'Conversation created',
+          conversation_id: conversation.id
+        });
     } else {
       res.status(500).json({ message: 'Conversation creation failure' });
     }

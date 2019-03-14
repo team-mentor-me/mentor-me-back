@@ -4,7 +4,7 @@ module.exports = {
   getById,
   getConversationIds,
   conversationsByUser,
-  // add,
+  add,
   remove,
   testingEndpoint
 };
@@ -56,13 +56,13 @@ async function conversationsByUser(id) {
 }
 
 // model not currently working, trying to generate conversation and receive id back.
-// async function add() {
-//   const [id] = await db('conversation').insert(null, 'id');
+async function add(options) {
+  const [id] = await db('conversation').insert(options, 'id');
 
-//   return db('conversation')
-//     .where({ id })
-//     .first();
-// }
+  return db('conversation')
+    .where({ id })
+    .first();
+}
 
 function remove(id) {
   return db('conversation')
