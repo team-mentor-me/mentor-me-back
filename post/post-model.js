@@ -21,6 +21,7 @@ async function getPostById(id) {
       'p.id as post_id',
       'p.post',
       'p.description',
+      'p.category',
       'u.id as user_id',
       'u.name',
       'u.photo'
