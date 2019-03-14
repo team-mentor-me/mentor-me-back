@@ -11,13 +11,12 @@ const router = express.Router();
 const posts = require('./post-model');
 
 // middleware
-const { auth } = require('../auth/auth');
 // const { checkRole } = require('../auth/checkRole'); // could use for admin panel if implemented
 
 // incoming /api
 
 // create post
-router.post('/posts', auth, async (req, res) => {
+router.post('/posts', async (req, res) => {
   const { post, category, type, user_fk } = req.body;
   const newPost = req.body;
 
@@ -30,8 +29,7 @@ router.post('/posts', auth, async (req, res) => {
   try {
     const post = await posts.add(newPost);
     if (post) {
-      res.status(200).json({
-        message: 'Post creation successful',
+      res.status(201).json({
         post_id: post.id
         // FE may want more post content returned?
       });
@@ -44,7 +42,7 @@ router.post('/posts', auth, async (req, res) => {
 });
 
 // get all posts
-router.get('/posts', auth, (req, res) => {
+router.get('/posts', (req, res) => {
   posts
     .get()
     .then(posts => {
@@ -58,7 +56,7 @@ router.get('/posts', auth, (req, res) => {
 });
 
 // get questions with user information included
-router.get('/questions', auth, (req, res) => {
+router.get('/questions', (req, res) => {
   posts
     .getQuestionsWithUsers()
     .then(questions => res.status(200).json(questions))
@@ -72,7 +70,7 @@ router.get('/questions', auth, (req, res) => {
 });
 
 // get post by id
-router.get('/posts/:id', auth, async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -108,7 +106,7 @@ router.patch('/posts/:id', async (req, res) => {
 });
 
 // delete post by id
-router.delete('/posts/:id', auth, async (req, res) => {
+router.delete('/posts/:id', async (req, res) => {
   const id = req.params.id;
 
   try {

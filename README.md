@@ -235,6 +235,8 @@ Return
 
 ### Get conversation ids for a user by user id - GET
 
+https://bw-mentor-me.herokuapp.com/api/conversation-list/:id
+
 ```
 return
 [

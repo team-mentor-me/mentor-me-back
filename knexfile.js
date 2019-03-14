@@ -16,6 +16,19 @@ const localPgConnection = {
 const dbConnection = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
+  testing: {
+    client: 'sqlite3',
+    connection: {
+      filename: './database/testing.sqlite3'
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations'
+    },
+    seeds: {
+      directory: './database/seeds'
+    }
+  },
   development: {
     client: 'pg',
     connection: dbConnection,
