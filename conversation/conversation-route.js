@@ -6,6 +6,7 @@ const router = express.Router();
 
 // data import
 const conversations = require('./conversation-model');
+const posts = require('../post/post-model');
 
 // get messages from a conversation by id
 router.get('/conversations/:id', async (req, res) => {
@@ -38,19 +39,19 @@ router.get('/conversation-list/:id', async (req, res) => {
   }
 });
 
-// in development, endpoint not currently working
+// Start new conversation and assign question to conversation thread when user replies to a question
 router.post('/conversations', async (req, res) => {
+  const { post_id } = req.body;
   try {
     const conversation = await conversations.add({ active: 'true' });
-
-    console.log(conversation);
+    const post = await posts.update(post_id, {
+      conversation_fk: conversation.id
+    });
     if (conversation) {
-      res
-        .status(201)
-        .json({
-          message: 'Conversation created',
-          conversation_id: conversation.id
-        });
+      res.status(201).json({
+        message: 'Conversation created',
+        conversation_id: conversation.id
+      });
     } else {
       res.status(500).json({ message: 'Conversation creation failure' });
     }
