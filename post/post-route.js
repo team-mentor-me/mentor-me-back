@@ -28,6 +28,7 @@ router.post('/posts', async (req, res) => {
 
   try {
     const post = await posts.add(newPost);
+
     if (post) {
       res.status(201).json({
         post_id: post.id
