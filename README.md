@@ -173,6 +173,44 @@ Return
   ]
 ```
 
+### Get answers - GET
+
+https://bw-mentor-me.herokuapp.com/api/answers
+
+```
+Returns all answers
+[
+    {
+        "post_id": number,
+        "post": "string",
+        "description": "string",
+        "category": "string",
+        "user_id": number,
+        "name": "string",
+        "photo": "string"
+    }, ...
+]
+```
+
+### Get answers by question id - GET
+
+https://bw-mentor-me.herokuapp.com/api/answers/:id
+
+```
+Returns answers to question by question id
+[
+    {
+        "post_id": number,
+        "post": "string",
+        "description": "string",
+        "category": "string",
+        "user_id": number,
+        "name": "string",
+        "photo": "string"
+    }, ...
+]
+```
+
 ### Add new post - user to add question or message - POST
 
 https://bw-mentor-me.herokuapp.com/api/posts
