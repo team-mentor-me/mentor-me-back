@@ -173,7 +173,45 @@ Return
   ]
 ```
 
-### Add new post - POST
+### Get answers - GET
+
+https://bw-mentor-me.herokuapp.com/api/answers
+
+```
+Returns all answers
+[
+    {
+        "post_id": number,
+        "post": "string",
+        "description": "string",
+        "category": "string",
+        "user_id": number,
+        "name": "string",
+        "photo": "string"
+    }, ...
+]
+```
+
+### Get answers by question id - GET
+
+https://bw-mentor-me.herokuapp.com/api/answers/:id
+
+```
+Returns answers to question by question id
+[
+    {
+        "post_id": number,
+        "post": "string",
+        "description": "string",
+        "category": "string",
+        "user_id": number,
+        "name": "string",
+        "photo": "string"
+    }, ...
+]
+```
+
+### Add new post - user to add question or message - POST
 
 https://bw-mentor-me.herokuapp.com/api/posts
 
@@ -183,7 +221,7 @@ Argument
     “post": “string",
     “description": “string”,
     “category”: “string"
-    “type": “string”,
+    “type": “string”, // question || message
     “user_fk": number
     "photo_path": "string", // optional
     "file_path": "string" // optional
@@ -191,6 +229,34 @@ Argument
   }
 
   Database generates id and timestamp.
+```
+
+### Add new post - user to add answer to question - POST
+
+https://bw-mentor-me.herokuapp.com/api/answers
+
+```
+Argument
+{
+post: 'string',
+category: 'string',
+user_fk: number,  // user id who answers
+question_fk: number,  // post id this answer relates to
+}
+
+Database generates id and timestamp.
+```
+
+```
+Return:
+{
+    post_i": number,
+    post: "string",
+    category: "string",
+    type: "string",
+    name: "string",
+    photo: "string"
+}
 ```
 
 ### Get post by id - GET
