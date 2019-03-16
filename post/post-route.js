@@ -9,6 +9,7 @@ const router = express.Router();
 
 // data imports
 const posts = require('./post-model');
+const users = require('../user/user-model');
 
 // middleware
 // const { checkRole } = require('../auth/checkRole'); // could use for admin panel if implemented
@@ -33,6 +34,43 @@ router.post('/posts', async (req, res) => {
       res.status(201).json({
         post_id: post.id
         // FE may want more post content returned?
+      });
+    } else {
+      res.status(500).json({ message: 'Post creation failure' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// create post with type answer
+router.post('/answers', async (req, res) => {
+  const { post, category, user_fk, post_fk } = req.body;
+  let newAnswer = req.body;
+
+  if ((!post, !category, !user_fk, !post_fk)) {
+    res
+      .status(400)
+      .json({ message: 'Missing required field, please try again.' });
+  }
+
+  try {
+    newAnswer = {
+      ...newAnswer,
+      type: 'answer'
+    };
+
+    const answer = await posts.add(newAnswer);
+    const user = await users.getById(answer.user_fk);
+    if (answer) {
+      res.status(201).json({
+        post_id: answer.id,
+        post: answer.post,
+        category: answer.category,
+        type: answer.type,
+        user_id: user.id,
+        name: user.name,
+        photo: user.photo
       });
     } else {
       res.status(500).json({ message: 'Post creation failure' });

@@ -13,6 +13,11 @@ exports.up = function(knex, Promise) {
       .references('id')
       .inTable('user');
     table
+      .integer('post_fk')
+      .unsigned()
+      .references('id')
+      .inTable('post');
+    table
       .integer('conversation_fk')
       .unsigned()
       .references('id')
