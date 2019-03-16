@@ -108,6 +108,38 @@ router.get('/questions', (req, res) => {
     );
 });
 
+// get answers with user information included
+router.get('/answers', (req, res) => {
+  posts
+    .getAnswers()
+    .then(answers => res.status(200).json(answers))
+
+    //   })
+    .catch(err =>
+      res
+        .status(500)
+        .json({ message: 'Internal server error or invalid token' })
+    );
+});
+
+// get answers for question by question id
+router.get('/answers/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const answers = await posts.getQuestionAnswers(id);
+    if (!answers) {
+      res
+        .status(404)
+        .json({ message: `No post with matching id, please try again.` });
+    } else {
+      res.status(200).json(answers);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error or invalid token' });
+  }
+});
+
 // get post by id
 router.get('/posts/:id', async (req, res) => {
   const id = req.params.id;

@@ -173,7 +173,7 @@ Return
   ]
 ```
 
-### Add new post - POST
+### Add new post - user to add question or message - POST
 
 https://bw-mentor-me.herokuapp.com/api/posts
 
@@ -183,7 +183,7 @@ Argument
     “post": “string",
     “description": “string”,
     “category”: “string"
-    “type": “string”,
+    “type": “string”, // question || message
     “user_fk": number
     "photo_path": "string", // optional
     "file_path": "string" // optional
@@ -193,14 +193,14 @@ Argument
   Database generates id and timestamp.
 ```
 
-### Add answer to question - POST
+### Add new post - user to add answer to question - POST
 
 https://bw-mentor-me.herokuapp.com/api/answers
 
 ```
 Argument
 {
-post: 'string',  // answer to question
+post: 'string',
 category: 'string',
 user_fk: number,  // user id who answers
 question_fk: number,  // post id this answer relates to

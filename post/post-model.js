@@ -4,9 +4,11 @@ module.exports = {
   add,
   get,
   getPostById,
+  getAnswers,
   remove,
   getQuestions,
   getQuestionsWithUsers,
+  getQuestionAnswers,
   update
 };
 
@@ -22,6 +24,7 @@ async function getPostById(id) {
       'p.post',
       'p.description',
       'p.category',
+      'p.type',
       'u.id as user_id',
       'u.name',
       'u.photo'
@@ -50,6 +53,37 @@ async function getQuestionsWithUsers() {
     );
 
   return questions;
+}
+
+function getAnswers() {
+  return db('post as p')
+    .join('user as u', 'p.user_fk', 'u.id')
+    .select(
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'p.category',
+      'u.id as user_id',
+      'u.name',
+      'u.photo'
+    )
+    .where({ type: 'answer' });
+}
+
+function getQuestionAnswers(id) {
+  return db('post as p')
+    .join('user as u', 'p.user_fk', 'u.id')
+    .select(
+      'p.id as post_id',
+      'p.post',
+      'p.description',
+      'p.category',
+      'u.id as user_id',
+      'u.name',
+      'u.photo'
+    )
+    .where({ 'p.type': 'answer' })
+    .andWhere({ 'p.post_fk': id });
 }
 
 async function add(newPost) {
