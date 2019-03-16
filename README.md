@@ -193,6 +193,34 @@ Argument
   Database generates id and timestamp.
 ```
 
+### Add answer to question - POST
+
+https://bw-mentor-me.herokuapp.com/api/answers
+
+```
+Argument
+{
+post: 'string',  // answer to question
+category: 'string',
+user_fk: number,  // user id who answers
+question_fk: number,  // post id this answer relates to
+}
+
+Database generates id and timestamp.
+```
+
+```
+Return:
+{
+    post_i": number,
+    post: "string",
+    category: "string",
+    type: "string",
+    name: "string",
+    photo: "string"
+}
+```
+
 ### Get post by id - GET
 
 https://bw-mentor-me.herokuapp.com/api/posts/:id
