@@ -50,7 +50,8 @@ async function getQuestionsWithUsers() {
       'u.id as user_id',
       'u.name',
       'u.photo'
-    );
+    )
+    .where({ type: 'question' });
 
   return questions;
 }
